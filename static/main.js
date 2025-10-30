@@ -151,3 +151,19 @@ async function addTodo_async(url, payload) {
   const data = await r.json();
   console.log(data);
 }
+
+async function updateTodo_async(url, payload) {
+  const r = await fetch(url, {
+    method: "PUT",
+    credentials: "same-origin",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCookie("csrftoken"),
+    },
+    body: JSON.stringify({ payload: payload })
+  });
+
+  const data = await r.json();
+  console.log(data);
+}
+
