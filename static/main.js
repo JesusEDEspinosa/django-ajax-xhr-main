@@ -136,3 +136,18 @@ async function getAllTodos_async(url) {
     todoList.innerHTML += todoHTMLElement;
   });
 }
+
+async function addTodo_async(url, payload) {
+  const r = await fetch(url, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      // "X-CSRFToken": getCookie("csrftoken"),
+    },
+    body: JSON.stringify({ payload: payload })
+  });
+
+  const data = await r.json();
+  console.log(data);
+}
