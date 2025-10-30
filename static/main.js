@@ -167,3 +167,16 @@ async function updateTodo_async(url, payload) {
   console.log(data);
 }
 
+async function deleteTodo_async(url) {
+  const r = await fetch(url, {
+    method: "DELETE",
+    credentials: "same-origin",
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+      "X-CSRFToken": getCookie("csrftoken"),
+    }
+  });
+
+  const data = await r.json();
+  console.log(data);
+}
