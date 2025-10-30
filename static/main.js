@@ -114,3 +114,25 @@ function deleteTodo(url) {
     console.log(data);
   });
 }
+
+async function getAllTodos_async(url) {
+  const r = await fetch(url, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    }
+  });
+
+  const data = await r.json();
+
+  const todoList = document.getElementById("todoList");
+  todoList.innerHTML = "";
+
+  (data.context).forEach(todo => {
+    const todoHTMLElement = `
+      <li>
+        <p>Task: ${todo.task}</p>
+        <p>Completed?: ${todo.completed}</p>
+      </li>`;
+    todoList.innerHTML += todoHTMLElement;
+  });
+}
